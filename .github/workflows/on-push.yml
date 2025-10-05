@@ -1,4 +1,4 @@
-name: Annotation Extension Build, Zip, and Release
+name: TrackMe Extension Build, Zip, and Release
 
 on:
   push:
@@ -18,11 +18,11 @@ jobs:
       - name: Extract version from blender_manifest.toml
         id: extract_version
         run: |
-          VERSION=$(grep -Po '(?<=^version = ")[^"]*' ./annotation-extension/blender_manifest.toml)
+          VERSION=$(grep -Po '(?<=^version = ")[^"]*' ./trackme-extension/blender_manifest.toml)
           echo "Version found: $VERSION"
           echo "::set-output name=version::$VERSION"
 
-      # Step 3: Zip the annotation-extension directory
+      # Step 3: Zip the trackme-extension directory
       - name: Zip trackme-extension directory
         run: |
           zip -r trackme-extension.zip trackme-extension
@@ -55,7 +55,7 @@ jobs:
         with:
           tag_name: v${{ steps.extract_version.outputs.version }}
           release_name: "Release v${{ steps.extract_version.outputs.version }}"
-          body: "Release of annotation-extension version ${{ steps.extract_version.outputs.version }}"
+          body: "Release of trackme-extension version ${{ steps.extract_version.outputs.version }}"
           draft: false
           prerelease: false
         env:
