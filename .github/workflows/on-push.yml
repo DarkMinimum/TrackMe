@@ -3,7 +3,7 @@ name: Annotation Extension Build, Zip, and Release
 on:
   push:
     branches:
-      - master  # Trigger only on pushes to the master branch
+      - main  # Trigger only on pushes to the master branch
 
 jobs:
   build-and-release:
@@ -23,17 +23,17 @@ jobs:
           echo "::set-output name=version::$VERSION"
 
       # Step 3: Zip the annotation-extension directory
-      - name: Zip annotation-extension directory
+      - name: Zip trackme-extension directory
         run: |
-          zip -r annotation-extension.zip annotation-extension
-          echo "Zipped annotation-extension folder"
+          zip -r trackme-extension.zip trackme-extension
+          echo "Zipped trackme-extension folder"
 
       # Step 4: Rename the zip file using the version
       - name: Rename zip file with version
         run: |
           VERSION=${{ steps.extract_version.outputs.version }}
-          mv annotation-extension.zip annotation-extension-$VERSION.zip
-          echo "Renamed zip file to annotation-extension-$VERSION.zip"
+          mv trackme-extension.zip trackme-extension-$VERSION.zip
+          echo "Renamed zip file to trackme-extension-$VERSION.zip"
 
       # Step 5: Set Git user identity (Fix for committer identity unknown error)
       - name: Set Git user identity
@@ -66,8 +66,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: annotation-extension-${{ steps.extract_version.outputs.version }}.zip
-          asset_name: annotation-extension-${{ steps.extract_version.outputs.version }}.zip
+          asset_path: trackme-extension-${{ steps.extract_version.outputs.version }}.zip
+          asset_name: trackme-extension-${{ steps.extract_version.outputs.version }}.zip
           asset_content_type: application/zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
