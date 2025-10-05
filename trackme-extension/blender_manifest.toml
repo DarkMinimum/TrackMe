@@ -1,0 +1,12 @@
+schema_version = "1.0.0"
+
+id = "TrackMe"
+version = "0.0.1"
+name = "Track Me"
+tagline = "Tracks time that you spend on each blend file."
+maintainer = "Danylo Hrechyshkin"
+type = "add-on"
+tags = ["System"]
+blender_version_min = "4.5.3"
+# License conforming to https://spdx.org/licenses/ (use "SPDX: prefix)
+license = ["SPDX:GPL-2.0-or-later"]
